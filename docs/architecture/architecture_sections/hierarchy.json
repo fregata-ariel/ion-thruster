@@ -1,0 +1,261 @@
+{
+  "source_file": "architecture.md",
+  "base_level": 1,
+  "metadata": {},
+  "sections": [
+    {
+      "title": "Architecture Guide",
+      "file": "sections/01-architecture-guide.md",
+      "order": 0,
+      "children": [
+        {
+          "title": "Overview",
+          "file": "sections/01-architecture-guide/01-overview.md",
+          "order": 0,
+          "children": []
+        },
+        {
+          "title": "Crate Structure",
+          "file": "sections/01-architecture-guide/02-crate-structure.md",
+          "order": 1,
+          "children": []
+        },
+        {
+          "title": "Data Flow",
+          "file": "sections/01-architecture-guide/03-data-flow.md",
+          "order": 2,
+          "children": []
+        },
+        {
+          "title": "ComputeBackend Abstraction",
+          "file": "sections/01-architecture-guide/04-computebackend-abstraction.md",
+          "order": 3,
+          "children": [
+            {
+              "title": "カーネルはデータであり、コードではない",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "なぜクロージャではなくデータ記述か",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "バックエンド階層",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Kernels are data, not code",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/04-kernels-are-data-not-code.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Why data descriptions instead of closures",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/05-why-data-descriptions-instead-of-closure.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Backend hierarchy",
+              "file": "sections/01-architecture-guide/04-computebackend-abstraction/06-backend-hierarchy.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Mesh Data Model",
+          "file": "sections/01-architecture-guide/05-mesh-data-model.md",
+          "order": 4,
+          "children": [
+            {
+              "title": "面の順序規約",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "CSR圧縮接続",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/02-csr.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "事前計算された幾何量",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Face ordering convention",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/04-face-ordering-convention.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "CSR-compressed connectivity",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/05-csr-compressed-connectivity.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Precomputed geometry",
+              "file": "sections/01-architecture-guide/05-mesh-data-model/06-precomputed-geometry.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Field Registry and State",
+          "file": "sections/01-architecture-guide/06-field-registry-and-state.md",
+          "order": 5,
+          "children": [
+            {
+              "title": "なぜ文字列キーか",
+              "file": "sections/01-architecture-guide/06-field-registry-and-state/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "Why string keys",
+              "file": "sections/01-architecture-guide/06-field-registry-and-state/02-why-string-keys.md",
+              "order": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Physics Module System",
+          "file": "sections/01-architecture-guide/07-physics-module-system.md",
+          "order": 6,
+          "children": [
+            {
+              "title": "将来の複数物理モジュール連成",
+              "file": "sections/01-architecture-guide/07-physics-module-system/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "Future multi-physics coupling",
+              "file": "sections/01-architecture-guide/07-physics-module-system/02-future-multi-physics-coupling.md",
+              "order": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Time Stepping and Operator Splitting",
+          "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting.md",
+          "order": 7,
+          "children": [
+            {
+              "title": "SplittingStep trait",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/01-splittingstep-trait.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "EHDの分割順序",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/02-ehd.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "時間刻み制御",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "SplittingStep trait",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/04-splittingstep-trait.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "EHD splitting order",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/05-ehd-splitting-order.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Time step control",
+              "file": "sections/01-architecture-guide/08-time-stepping-and-operator-splitting/06-time-step-control.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Performance Design",
+          "file": "sections/01-architecture-guide/09-performance-design.md",
+          "order": 8,
+          "children": [
+            {
+              "title": "データレイアウト",
+              "file": "sections/01-architecture-guide/09-performance-design/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "アロケーション回避",
+              "file": "sections/01-architecture-guide/09-performance-design/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "並列化への備え",
+              "file": "sections/01-architecture-guide/09-performance-design/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Data layout",
+              "file": "sections/01-architecture-guide/09-performance-design/04-data-layout.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Allocation avoidance",
+              "file": "sections/01-architecture-guide/09-performance-design/05-allocation-avoidance.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Parallelism readiness",
+              "file": "sections/01-architecture-guide/09-performance-design/06-parallelism-readiness.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Dependency Graph",
+          "file": "sections/01-architecture-guide/10-dependency-graph.md",
+          "order": 9,
+          "children": [
+            {
+              "title": "外部依存",
+              "file": "sections/01-architecture-guide/10-dependency-graph/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "External dependencies",
+              "file": "sections/01-architecture-guide/10-dependency-graph/02-external-dependencies.md",
+              "order": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

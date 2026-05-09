@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "ion-craft CFD Framework — Glossary & Constants",
+    "version": "0.1.0"
+  },
+  "entries": [
+    {
+      "id": "poisson_eq",
+      "kind": "term",
+      "names": { "ja": "Poisson方程式", "en": "Poisson equation" },
+      "description": {
+        "ja": "空間電荷密度から電位分布を決定する楕円型偏微分方程式",
+        "en": "Elliptic PDE determining the electric potential distribution from space charge density"
+      },
+      "symbol": "\\nabla \\cdot (\\varepsilon \\nabla \\phi) = -\\rho_q"
+    },
+    {
+      "id": "navier_stokes",
+      "kind": "term",
+      "names": { "ja": "Navier-Stokes方程式", "en": "Navier-Stokes equations" },
+      "description": {
+        "ja": "粘性流体の運動を記述する非線形偏微分方程式系",
+        "en": "System of nonlinear PDEs describing the motion of viscous fluids"
+      }
+    },
+    {
+      "id": "drift_diffusion",
+      "kind": "term",
+      "names": { "ja": "ドリフト拡散方程式", "en": "drift-diffusion equation" },
+      "description": {
+        "ja": "荷電粒子が電場によるドリフトと拡散により輸送される過程を記述する方程式",
+        "en": "Equation describing the transport of charged particles via electric field drift and diffusion"
+      }
+    },
+    {
+      "id": "ehd_body_force",
+      "kind": "term",
+      "names": { "ja": "EHD体積力", "en": "EHD body force" },
+      "description": {
+        "ja": "空間電荷と電場の積で与えられる電気流体力学的体積力",
+        "en": "Electrohydrodynamic body force given by the product of space charge density and electric field"
+      },
+      "symbol": "\\mathbf{f}_{\\text{EHD}} = \\rho_q \\mathbf{E}"
+    },
+    {
+      "id": "electric_potential",
+      "kind": "term",
+      "names": { "ja": "電位", "en": "electric potential" },
+      "symbol": "\\phi"
+    },
+    {
+      "id": "electric_field",
+      "kind": "term",
+      "names": { "ja": "電場", "en": "electric field" },
+      "description": {
+        "ja": "電位の負の勾配",
+        "en": "Negative gradient of electric potential"
+      },
+      "symbol": "\\mathbf{E}"
+    },
+    {
+      "id": "ion_density",
+      "kind": "term",
+      "names": { "ja": "イオン密度", "en": "ion density" },
+      "symbol": "n_i"
+    },
+    {
+      "id": "charge_density",
+      "kind": "term",
+      "names": { "ja": "空間電荷密度", "en": "space charge density" },
+      "symbol": "\\rho_q"
+    },
+    {
+      "id": "ion_mobility",
+      "kind": "const",
+      "names": { "ja": "イオン移動度", "en": "ion mobility" },
+      "symbol": "\\mu_i",
+      "value": "2.0e-4",
+      "unit": "m²/(V·s)"
+    },
+    {
+      "id": "ion_diffusion",
+      "kind": "const",
+      "names": { "ja": "イオン拡散係数", "en": "ion diffusion coefficient" },
+      "symbol": "D_i",
+      "value": "5.0e-6",
+      "unit": "m²/s"
+    },
+    {
+      "id": "permittivity",
+      "kind": "const",
+      "names": { "ja": "真空の誘電率", "en": "permittivity of free space" },
+      "symbol": "\\varepsilon_0",
+      "value": "8.8541878128e-12",
+      "unit": "F/m"
+    },
+    {
+      "id": "elementary_charge",
+      "kind": "const",
+      "names": { "ja": "電気素量", "en": "elementary charge" },
+      "symbol": "e",
+      "value": "1.602176634e-19",
+      "unit": "C"
+    },
+    {
+      "id": "gas_density",
+      "kind": "const",
+      "names": { "ja": "気体密度", "en": "gas density" },
+      "symbol": "\\rho_g",
+      "value": "1.225",
+      "unit": "kg/m³"
+    },
+    {
+      "id": "gas_viscosity",
+      "kind": "const",
+      "names": { "ja": "気体動粘度", "en": "gas dynamic viscosity" },
+      "symbol": "\\mu_g",
+      "value": "1.81e-5",
+      "unit": "Pa·s"
+    },
+    {
+      "id": "scharfetter_gummel",
+      "kind": "term",
+      "names": { "ja": "Scharfetter-Gummelスキーム", "en": "Scharfetter-Gummel scheme" },
+      "description": {
+        "ja": "ドリフト拡散方程式の安定な離散化手法。面のPeclet数に基づいてBernoulli関数で指数的に重み付けする",
+        "en": "Numerically stable discretization for drift-diffusion equations, using Bernoulli function weighting based on the local face Peclet number"
+      }
+    },
+    {
+      "id": "fvm",
+      "kind": "term",
+      "names": { "ja": "有限体積法", "en": "Finite Volume Method" },
+      "description": {
+        "ja": "制御体積に対する保存則の積分形を離散化する手法。面フラックスベース",
+        "en": "Discretization method based on the integral form of conservation laws over control volumes. Face-flux based"
+      }
+    },
+    {
+      "id": "cg_solver",
+      "kind": "term",
+      "names": { "ja": "共役勾配法", "en": "Conjugate Gradient method" },
+      "description": {
+        "ja": "対称正定値疎行列の反復解法",
+        "en": "Iterative solver for symmetric positive-definite sparse matrices"
+      }
+    },
+    {
+      "id": "operator_splitting",
+      "kind": "term",
+      "names": { "ja": "オペレータ分割法", "en": "operator splitting method" },
+      "description": {
+        "ja": "連成方程式系を個別の方程式に分割して逐次的に解く手法",
+        "en": "Method that splits a coupled equation system into individual equations solved sequentially"
+      }
+    },
+    {
+      "id": "corona_discharge",
+      "kind": "term",
+      "names": { "ja": "コロナ放電", "en": "corona discharge" },
+      "description": {
+        "ja": "先端電極近傍の強電場領域で空気が部分的に電離する放電現象",
+        "en": "Electrical discharge occurring in a strong electric field region near a sharp electrode, partially ionizing the surrounding gas"
+      }
+    },
+    {
+      "id": "ionic_wind",
+      "kind": "term",
+      "names": { "ja": "イオン風", "en": "ionic wind" },
+      "description": {
+        "ja": "コロナ放電で生成されたイオンが中性分子に運動量を渡して生じる気流",
+        "en": "Gas flow produced by momentum transfer from corona-generated ions to neutral molecules"
+      }
+    },
+    {
+      "id": "bernoulli_function",
+      "kind": "term",
+      "names": { "ja": "Bernoulli関数", "en": "Bernoulli function" },
+      "description": {
+        "ja": "B(x) = x / (exp(x) - 1)。Scharfetter-Gummelスキームで使用される",
+        "en": "B(x) = x / (exp(x) - 1). Used in the Scharfetter-Gummel scheme"
+      },
+      "symbol": "B(x) = x / (e^x - 1)"
+    },
+    {
+      "id": "pressure_projection",
+      "kind": "term",
+      "names": { "ja": "圧力投影法", "en": "pressure projection method" },
+      "description": {
+        "ja": "非圧縮性流れの速度場を発散フリーに補正するためのfractional step法",
+        "en": "Fractional step method to correct the velocity field to be divergence-free for incompressible flows"
+      }
+    }
+  ]
+}
