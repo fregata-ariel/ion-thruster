@@ -72,7 +72,7 @@
     },
     {
       "id": "ion_mobility",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "イオン移動度", "en": "ion mobility" },
       "symbol": "\\mu_i",
       "value": "2.0e-4",
@@ -80,7 +80,7 @@
     },
     {
       "id": "ion_diffusion",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "イオン拡散係数", "en": "ion diffusion coefficient" },
       "symbol": "D_i",
       "value": "5.0e-6",
@@ -88,7 +88,7 @@
     },
     {
       "id": "permittivity",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "真空の誘電率", "en": "permittivity of free space" },
       "symbol": "\\varepsilon_0",
       "value": "8.8541878128e-12",
@@ -96,7 +96,7 @@
     },
     {
       "id": "elementary_charge",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "電気素量", "en": "elementary charge" },
       "symbol": "e",
       "value": "1.602176634e-19",
@@ -104,7 +104,7 @@
     },
     {
       "id": "gas_density",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "気体密度", "en": "gas density" },
       "symbol": "\\rho_g",
       "value": "1.225",
@@ -112,7 +112,7 @@
     },
     {
       "id": "gas_viscosity",
-      "kind": "const",
+      "kind": "term",
       "names": { "ja": "気体動粘度", "en": "gas dynamic viscosity" },
       "symbol": "\\mu_g",
       "value": "1.81e-5",

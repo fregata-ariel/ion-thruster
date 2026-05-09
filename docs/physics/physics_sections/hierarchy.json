@@ -1,0 +1,142 @@
+{
+  "source_file": "physics.md",
+  "base_level": 1,
+  "metadata": {},
+  "sections": [
+    {
+      "title": "Physics Model Reference",
+      "file": "sections/01-physics-model-reference.md",
+      "order": 0,
+      "children": [
+        {
+          "title": "Governing Equations",
+          "file": "sections/01-physics-model-reference/01-governing-equations.md",
+          "order": 0,
+          "children": []
+        },
+        {
+          "title": "Poisson Equation",
+          "file": "sections/01-physics-model-reference/02-poisson-equation.md",
+          "order": 1,
+          "children": []
+        },
+        {
+          "title": "Ion Transport",
+          "file": "sections/01-physics-model-reference/03-ion-transport.md",
+          "order": 2,
+          "children": []
+        },
+        {
+          "title": "Scharfetter-Gummel Scheme",
+          "file": "sections/01-physics-model-reference/04-scharfetter-gummel-scheme.md",
+          "order": 3,
+          "children": []
+        },
+        {
+          "title": "EHD Body Force",
+          "file": "sections/01-physics-model-reference/05-ehd-body-force.md",
+          "order": 4,
+          "children": []
+        },
+        {
+          "title": "Incompressible Navier-Stokes",
+          "file": "sections/01-physics-model-reference/06-incompressible-navier-stokes.md",
+          "order": 5,
+          "children": []
+        },
+        {
+          "title": "Boundary Conditions",
+          "file": "sections/01-physics-model-reference/07-boundary-conditions.md",
+          "order": 6,
+          "children": [
+            {
+              "title": "Emitter（放電電極）",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/01-emitter.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "Collector（集電電極）",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/02-collector.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "Farfield（遠方境界）",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/03-farfield.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Emitter (discharge electrode)",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/04-emitter-discharge-electrode.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Collector (collection electrode)",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/05-collector-collection-electrode.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Farfield (far-field boundary)",
+              "file": "sections/01-physics-model-reference/07-boundary-conditions/06-farfield-far-field-boundary.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Operator Splitting Coupling",
+          "file": "sections/01-physics-model-reference/08-operator-splitting-coupling.md",
+          "order": 7,
+          "children": []
+        },
+        {
+          "title": "Physical Constants and Parameters",
+          "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters.md",
+          "order": 8,
+          "children": [
+            {
+              "title": "物理定数",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "気体パラメータ（標準大気条件）",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "イオン輸送パラメータ",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Physical Constants",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/04-physical-constants.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Gas Parameters (standard atmospheric conditions)",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/05-gas-parameters-standard-atmospheric-cond.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Ion Transport Parameters",
+              "file": "sections/01-physics-model-reference/09-physical-constants-and-parameters/06-ion-transport-parameters.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
