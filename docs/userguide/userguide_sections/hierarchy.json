@@ -1,0 +1,229 @@
+{
+  "source_file": "userguide.md",
+  "base_level": 1,
+  "metadata": {},
+  "sections": [
+    {
+      "title": "User Guide",
+      "file": "sections/01-user-guide.md",
+      "order": 0,
+      "children": [
+        {
+          "title": "Prerequisites",
+          "file": "sections/01-user-guide/01-prerequisites.md",
+          "order": 0,
+          "children": []
+        },
+        {
+          "title": "Installation",
+          "file": "sections/01-user-guide/02-installation.md",
+          "order": 1,
+          "children": []
+        },
+        {
+          "title": "Mesh Generation with Gmsh",
+          "file": "sections/01-user-guide/03-mesh-generation-with-gmsh.md",
+          "order": 2,
+          "children": [
+            {
+              "title": "wire_plate_2d サンプル",
+              "file": "sections/01-user-guide/03-mesh-generation-with-gmsh/01-wire-plate-2d.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "wire_plate_2d sample",
+              "file": "sections/01-user-guide/03-mesh-generation-with-gmsh/02-wire-plate-2d-sample.md",
+              "order": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Configuration (TOML)",
+          "file": "sections/01-user-guide/04-configuration-toml.md",
+          "order": 3,
+          "children": [
+            {
+              "title": "[mesh] セクション",
+              "file": "sections/01-user-guide/04-configuration-toml/01-mesh.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "[physics] セクション",
+              "file": "sections/01-user-guide/04-configuration-toml/02-physics.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "[boundary.*] セクション",
+              "file": "sections/01-user-guide/04-configuration-toml/03-boundary.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "[fluid] セクション",
+              "file": "sections/01-user-guide/04-configuration-toml/04-fluid.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "[output] セクション",
+              "file": "sections/01-user-guide/04-configuration-toml/05-output.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "[mesh] section",
+              "file": "sections/01-user-guide/04-configuration-toml/06-mesh-section.md",
+              "order": 5,
+              "children": []
+            },
+            {
+              "title": "[physics] section",
+              "file": "sections/01-user-guide/04-configuration-toml/07-physics-section.md",
+              "order": 6,
+              "children": []
+            },
+            {
+              "title": "[boundary.*] section",
+              "file": "sections/01-user-guide/04-configuration-toml/08-boundary-section.md",
+              "order": 7,
+              "children": []
+            },
+            {
+              "title": "[fluid] section",
+              "file": "sections/01-user-guide/04-configuration-toml/09-fluid-section.md",
+              "order": 8,
+              "children": []
+            },
+            {
+              "title": "[output] section",
+              "file": "sections/01-user-guide/04-configuration-toml/10-output-section.md",
+              "order": 9,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Running a Simulation",
+          "file": "sections/01-user-guide/05-running-a-simulation.md",
+          "order": 4,
+          "children": [
+            {
+              "title": "CLIオプション",
+              "file": "sections/01-user-guide/05-running-a-simulation/01-cli.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "ログ制御",
+              "file": "sections/01-user-guide/05-running-a-simulation/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "CLI options",
+              "file": "sections/01-user-guide/05-running-a-simulation/03-cli-options.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Log control",
+              "file": "sections/01-user-guide/05-running-a-simulation/04-log-control.md",
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Visualization with ParaView",
+          "file": "sections/01-user-guide/06-visualization-with-paraview.md",
+          "order": 5,
+          "children": [
+            {
+              "title": "手順",
+              "file": "sections/01-user-guide/06-visualization-with-paraview/01-section.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "出力ファイル構造",
+              "file": "sections/01-user-guide/06-visualization-with-paraview/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "Steps",
+              "file": "sections/01-user-guide/06-visualization-with-paraview/03-steps.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Output file structure",
+              "file": "sections/01-user-guide/06-visualization-with-paraview/04-output-file-structure.md",
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "Adding a Physics Module",
+          "file": "sections/01-user-guide/07-adding-a-physics-module.md",
+          "order": 6,
+          "children": [
+            {
+              "title": "1. crateの作成",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/01-1-crate.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "2. モジュール構造体の実装",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/02-2.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "3. SplittingStepの実装",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/03-3-splittingstep.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "4. CLIへの統合",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/04-4-cli.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "1. Create the crate",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/05-1-create-the-crate.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "2. Implement the module struct",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/06-2-implement-the-module-struct.md",
+              "order": 5,
+              "children": []
+            },
+            {
+              "title": "3. Implement SplittingStep",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/07-3-implement-splittingstep.md",
+              "order": 6,
+              "children": []
+            },
+            {
+              "title": "4. Wire into the CLI",
+              "file": "sections/01-user-guide/07-adding-a-physics-module/08-4-wire-into-the-cli.md",
+              "order": 7,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

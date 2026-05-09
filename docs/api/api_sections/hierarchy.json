@@ -1,0 +1,388 @@
+{
+  "source_file": "api.md",
+  "base_level": 1,
+  "metadata": {},
+  "sections": [
+    {
+      "title": "API Reference",
+      "file": "sections/01-api-reference.md",
+      "order": 0,
+      "children": [
+        {
+          "title": "cfd-core: Types and Traits",
+          "file": "sections/01-api-reference/01-cfd-core-types-and-traits.md",
+          "order": 0,
+          "children": [
+            {
+              "title": "Vec3",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/01-vec3.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "Index Newtypes",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/02-index-newtypes.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "BoundaryCondition",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/03-boundarycondition.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "FieldLocation",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/04-fieldlocation.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "CfdError",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/05-cfderror.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Vec3",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/06-vec3.md",
+              "order": 5,
+              "children": []
+            },
+            {
+              "title": "Index Newtypes",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/07-index-newtypes.md",
+              "order": 6,
+              "children": []
+            },
+            {
+              "title": "BoundaryCondition",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/08-boundarycondition.md",
+              "order": 7,
+              "children": []
+            },
+            {
+              "title": "FieldLocation",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/09-fieldlocation.md",
+              "order": 8,
+              "children": []
+            },
+            {
+              "title": "CfdError",
+              "file": "sections/01-api-reference/01-cfd-core-types-and-traits/10-cfderror.md",
+              "order": 9,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-mesh: Mesh and Gmsh I/O",
+          "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io.md",
+          "order": 1,
+          "children": [
+            {
+              "title": "Mesh",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/01-mesh.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "CellType",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/02-celltype.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "BoundaryPatch",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/03-boundarypatch.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Gmsh I/O",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/04-gmsh-io.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Topology Construction",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/05-topology-construction.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Mesh",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/06-mesh.md",
+              "order": 5,
+              "children": []
+            },
+            {
+              "title": "CellType",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/07-celltype.md",
+              "order": 6,
+              "children": []
+            },
+            {
+              "title": "BoundaryPatch",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/08-boundarypatch.md",
+              "order": 7,
+              "children": []
+            },
+            {
+              "title": "Gmsh I/O",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/09-gmsh-io.md",
+              "order": 8,
+              "children": []
+            },
+            {
+              "title": "Topology Construction",
+              "file": "sections/01-api-reference/02-cfd-mesh-mesh-and-gmsh-io/10-topology-construction.md",
+              "order": 9,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-fields: Fields and Registry",
+          "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry.md",
+          "order": 2,
+          "children": [
+            {
+              "title": "ScalarField / VectorField",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/01-scalarfield-vectorfield.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "FieldRegistry",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/02-fieldregistry.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "SimState",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/03-simstate.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "ScalarField / VectorField",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/04-scalarfield-vectorfield.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "FieldRegistry",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/05-fieldregistry.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "SimState",
+              "file": "sections/01-api-reference/03-cfd-fields-fields-and-registry/06-simstate.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-linalg: Sparse Solvers",
+          "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers.md",
+          "order": 3,
+          "children": [
+            {
+              "title": "LinearSystem",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/01-linearsystem.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "LinearSolver trait",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/02-linearsolver-trait.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "ConjugateGradient",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/03-conjugategradient.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Preconditioner",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/04-preconditioner.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "LinearSystem",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/05-linearsystem.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "LinearSolver trait",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/06-linearsolver-trait.md",
+              "order": 5,
+              "children": []
+            },
+            {
+              "title": "ConjugateGradient",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/07-conjugategradient.md",
+              "order": 6,
+              "children": []
+            },
+            {
+              "title": "Preconditioner",
+              "file": "sections/01-api-reference/04-cfd-linalg-sparse-solvers/08-preconditioner.md",
+              "order": 7,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-compute: Backend Abstraction",
+          "file": "sections/01-api-reference/05-cfd-compute-backend-abstraction.md",
+          "order": 4,
+          "children": [
+            {
+              "title": "ComputeBackend trait",
+              "file": "sections/01-api-reference/05-cfd-compute-backend-abstraction/01-computebackend-trait.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "Kernel IR Types",
+              "file": "sections/01-api-reference/05-cfd-compute-backend-abstraction/02-kernel-ir-types.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "ComputeBackend trait",
+              "file": "sections/01-api-reference/05-cfd-compute-backend-abstraction/03-computebackend-trait.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Kernel IR Types",
+              "file": "sections/01-api-reference/05-cfd-compute-backend-abstraction/04-kernel-ir-types.md",
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-fvm: FVM Operators",
+          "file": "sections/01-api-reference/06-cfd-fvm-fvm-operators.md",
+          "order": 5,
+          "children": []
+        },
+        {
+          "title": "cfd-time: Time Integration",
+          "file": "sections/01-api-reference/07-cfd-time-time-integration.md",
+          "order": 6,
+          "children": [
+            {
+              "title": "SplittingStep trait",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/01-splittingstep-trait.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "OperatorSplitting",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/02-operatorsplitting.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "SimulationDriver",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/03-simulationdriver.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "SplittingStep trait",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/04-splittingstep-trait.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "OperatorSplitting",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/05-operatorsplitting.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "SimulationDriver",
+              "file": "sections/01-api-reference/07-cfd-time-time-integration/06-simulationdriver.md",
+              "order": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "cfd-io: VTU Output and Config",
+          "file": "sections/01-api-reference/08-cfd-io-vtu-output-and-config.md",
+          "order": 7,
+          "children": [
+            {
+              "title": "VtuWriter",
+              "file": "sections/01-api-reference/08-cfd-io-vtu-output-and-config/01-vtuwriter.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "SimConfig",
+              "file": "sections/01-api-reference/08-cfd-io-vtu-output-and-config/02-simconfig.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "VtuWriter",
+              "file": "sections/01-api-reference/08-cfd-io-vtu-output-and-config/03-vtuwriter.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "SimConfig",
+              "file": "sections/01-api-reference/08-cfd-io-vtu-output-and-config/04-simconfig.md",
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "title": "ehd-physics: EHD Module",
+          "file": "sections/01-api-reference/09-ehd-physics-ehd-module.md",
+          "order": 8,
+          "children": [
+            {
+              "title": "EhdConfig",
+              "file": "sections/01-api-reference/09-ehd-physics-ehd-module/01-ehdconfig.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "EhdModule",
+              "file": "sections/01-api-reference/09-ehd-physics-ehd-module/02-ehdmodule.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "EhdConfig",
+              "file": "sections/01-api-reference/09-ehd-physics-ehd-module/03-ehdconfig.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "EhdModule",
+              "file": "sections/01-api-reference/09-ehd-physics-ehd-module/04-ehdmodule.md",
+              "order": 3,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
