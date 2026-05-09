@@ -1,0 +1,10 @@
+[package]
+name = "cfd-mesh"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-compute = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

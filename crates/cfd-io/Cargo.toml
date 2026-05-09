@@ -1,0 +1,14 @@
+[package]
+name = "cfd-io"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-mesh = { workspace = true }
+cfd-fields = { workspace = true }
+cfd-time = { workspace = true }
+vtkio = { workspace = true }
+serde = { workspace = true }
+toml = { workspace = true }
+tracing = { workspace = true }

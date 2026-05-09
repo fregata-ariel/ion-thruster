@@ -1,0 +1,49 @@
+[mesh]
+path = "examples/wire_plate_2d/wire_plate.msh"
+format = "gmsh"
+
+[physics]
+gas = "air"
+rho_g = 1.225
+mu_g = 1.81e-5
+epsilon = 8.8541878128e-12
+ion_mobility = 2.0e-4
+ion_diffusion = 5.0e-6
+
+[boundary.emitter]
+phi = { type = "dirichlet", value = 20000.0 }
+ion_density = { type = "dirichlet", value = 1.0e15 }
+velocity = { type = "no_slip" }
+
+[boundary.collector]
+phi = { type = "dirichlet", value = 0.0 }
+ion_density = { type = "absorbing" }
+velocity = { type = "no_slip" }
+
+[boundary.farfield]
+phi = { type = "neumann", value = 0.0 }
+ion_density = { type = "outflow" }
+velocity = { type = "outflow" }
+
+[fluid]
+model = "incompressible"
+advection = "upwind"
+pressure_solver = "cg"
+dt = 1.0e-6
+steps = 100
+cfl = 0.5
+max_time = 1.0e-4
+
+[output]
+format = "vtu"
+every = 10
+path = "output/"
+fields = [
+    "phi",
+    "electric_field",
+    "ion_density",
+    "charge_density",
+    "velocity",
+    "pressure",
+    "ehd_force",
+]

@@ -1,0 +1,8 @@
+[package]
+name = "cfd-linalg"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+sprs = { workspace = true }

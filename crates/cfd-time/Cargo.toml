@@ -1,0 +1,10 @@
+[package]
+name = "cfd-time"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-mesh = { workspace = true }
+cfd-fields = { workspace = true }
+tracing = { workspace = true }

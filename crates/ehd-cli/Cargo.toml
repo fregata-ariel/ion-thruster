@@ -1,0 +1,24 @@
+[package]
+name = "ehd-cli"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "ehd-sim"
+path = "src/main.rs"
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-mesh = { workspace = true }
+cfd-fields = { workspace = true }
+cfd-linalg = { workspace = true }
+cfd-compute = { workspace = true }
+cfd-compute-cpu = { workspace = true }
+cfd-fvm = { workspace = true }
+cfd-time = { workspace = true }
+cfd-io = { workspace = true }
+ehd-physics = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }

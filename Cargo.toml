@@ -1,0 +1,44 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/cfd-core",
+    "crates/cfd-mesh",
+    "crates/cfd-fields",
+    "crates/cfd-linalg",
+    "crates/cfd-compute",
+    "crates/cfd-compute-cpu",
+    "crates/cfd-fvm",
+    "crates/cfd-time",
+    "crates/cfd-io",
+    "crates/ehd-physics",
+    "crates/ehd-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace.dependencies]
+# Internal crates
+cfd-core = { path = "crates/cfd-core" }
+cfd-mesh = { path = "crates/cfd-mesh" }
+cfd-fields = { path = "crates/cfd-fields" }
+cfd-linalg = { path = "crates/cfd-linalg" }
+cfd-compute = { path = "crates/cfd-compute" }
+cfd-compute-cpu = { path = "crates/cfd-compute-cpu" }
+cfd-fvm = { path = "crates/cfd-fvm" }
+cfd-time = { path = "crates/cfd-time" }
+cfd-io = { path = "crates/cfd-io" }
+ehd-physics = { path = "crates/ehd-physics" }
+
+# External dependencies
+sprs = "0.11"
+vtkio = "0.6"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+clap = { version = "4", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "2"
+anyhow = "1"
