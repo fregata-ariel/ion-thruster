@@ -1,0 +1,14 @@
+[package]
+name = "ehd-physics"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-mesh = { workspace = true }
+cfd-fields = { workspace = true }
+cfd-linalg = { workspace = true }
+cfd-compute = { workspace = true }
+cfd-fvm = { workspace = true }
+cfd-time = { workspace = true }
+tracing = { workspace = true }

@@ -1,0 +1,10 @@
+[package]
+name = "cfd-compute-cpu"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cfd-core = { workspace = true }
+cfd-compute = { workspace = true }
+cfd-fields = { workspace = true }
+thiserror = { workspace = true }
