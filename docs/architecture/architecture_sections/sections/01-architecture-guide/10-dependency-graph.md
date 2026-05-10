@@ -38,3 +38,4 @@ ehd-cli (clap, tracing-subscriber)
 
 `cfd-compute` does not directly depend on `cfd-mesh`. Instead, it defines a lightweight `MeshData` struct in its own internal module (`cfd_core_mesh_data`). This prevents backend crates from needing knowledge of the full mesh implementation.
 :::
+::: {lang=ja}

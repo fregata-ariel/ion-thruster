@@ -46,3 +46,4 @@ pub trait ComputeBackend: Send + Sync {
 
 `MeshData` is a lightweight mesh struct defined within `cfd-compute` to avoid direct dependency on `cfd-mesh::Mesh`. Conversion is done via `Mesh::to_mesh_data()`.
 :::
+::: {lang=ja}

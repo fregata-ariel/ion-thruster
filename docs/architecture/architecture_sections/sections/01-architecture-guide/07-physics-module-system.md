@@ -38,3 +38,4 @@ for step in ehd.splitting_steps() {
 
 The EHD module registers 9 fields: `phi`, `electric_field`, `ion_density`, `charge_density`, `ehd_force`, `velocity`, `pressure`, `poisson_rhs`, `ion_rhs`. It also provides `output_fields()` returning field name lists for VTU output.
 :::
+::: {lang=ja}

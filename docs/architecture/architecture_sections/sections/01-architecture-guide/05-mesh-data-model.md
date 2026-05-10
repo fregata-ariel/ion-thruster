@@ -62,3 +62,4 @@ pub struct Mesh {
 
 `CellType` supports 6 variants: `Triangle`, `Quad`, `Tetrahedron`, `Hexahedron`, `Wedge`, `Pyramid`. Topology construction is done by `topology::build_mesh()`, which builds the face-based structure from raw element data read from Gmsh. Shared faces between two cells are identified as internal faces by hash-matching sorted node sets; faces belonging to only one cell are boundary faces.
 :::
+::: {lang=ja}

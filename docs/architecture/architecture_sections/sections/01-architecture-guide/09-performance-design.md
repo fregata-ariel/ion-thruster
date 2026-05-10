@@ -6,3 +6,4 @@
 ::: {lang=en}
 Performance is considered from the design stage. Optimization follows three axes.
 :::
+::: {lang=ja}

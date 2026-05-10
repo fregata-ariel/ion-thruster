@@ -34,3 +34,4 @@ for step_num in 1..=max_steps {
 }
 ```
 :::
+::: {lang=ja}

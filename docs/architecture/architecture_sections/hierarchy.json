@@ -18,7 +18,44 @@
           "title": "Crate Structure",
           "file": "sections/01-architecture-guide/02-crate-structure.md",
           "order": 1,
-          "children": []
+          "children": [
+            {
+              "title": "汎用CFDコア",
+              "file": "sections/01-architecture-guide/02-crate-structure/01-cfd.md",
+              "order": 0,
+              "children": []
+            },
+            {
+              "title": "物理モジュール",
+              "file": "sections/01-architecture-guide/02-crate-structure/02-section.md",
+              "order": 1,
+              "children": []
+            },
+            {
+              "title": "設計原則",
+              "file": "sections/01-architecture-guide/02-crate-structure/03-section.md",
+              "order": 2,
+              "children": []
+            },
+            {
+              "title": "Generic CFD Core",
+              "file": "sections/01-architecture-guide/02-crate-structure/04-generic-cfd-core.md",
+              "order": 3,
+              "children": []
+            },
+            {
+              "title": "Physics Modules",
+              "file": "sections/01-architecture-guide/02-crate-structure/05-physics-modules.md",
+              "order": 4,
+              "children": []
+            },
+            {
+              "title": "Design Principles",
+              "file": "sections/01-architecture-guide/02-crate-structure/06-design-principles.md",
+              "order": 5,
+              "children": []
+            }
+          ]
         },
         {
           "title": "Data Flow",

@@ -295,6 +295,7 @@ pub trait ComputeBackend: Send + Sync {
 
 `MeshData` is a lightweight mesh struct defined within `cfd-compute` to avoid direct dependency on `cfd-mesh::Mesh`. Conversion is done via `Mesh::to_mesh_data()`.
 :::
+::: {lang=ja}
 
 ### カーネルはデータであり、コードではない
 
@@ -450,6 +451,7 @@ pub struct Mesh {
 
 `CellType` supports 6 variants: `Triangle`, `Quad`, `Tetrahedron`, `Hexahedron`, `Wedge`, `Pyramid`. Topology construction is done by `topology::build_mesh()`, which builds the face-based structure from raw element data read from Gmsh. Shared faces between two cells are identified as internal faces by hash-matching sorted node sets; faces belonging to only one cell are boundary faces.
 :::
+::: {lang=ja}
 
 ### 面の順序規約
 
@@ -555,6 +557,7 @@ let (phi, rhs) = state.fields.get_scalar_pair_mut("phi", "poisson_rhs")?;
 
 `SimState` holds `FieldRegistry` + current time (`time: f64`) + step count (`step: usize`) + timestep size (`dt: f64`). All sub-steps within a timestep sequentially mutate the same `SimState`.
 :::
+::: {lang=ja}
 
 ### なぜ文字列キーか
 
@@ -628,6 +631,7 @@ for step in ehd.splitting_steps() {
 
 The EHD module registers 9 fields: `phi`, `electric_field`, `ion_density`, `charge_density`, `ehd_force`, `velocity`, `pressure`, `poisson_rhs`, `ion_rhs`. It also provides `output_fields()` returning field name lists for VTU output.
 :::
+::: {lang=ja}
 
 ### 将来の複数物理モジュール連成
 
@@ -717,6 +721,7 @@ for step_num in 1..=max_steps {
 }
 ```
 :::
+::: {lang=ja}
 
 ### SplittingStep trait
 
@@ -786,6 +791,7 @@ Global dt is determined as `CFL × min(step.max_dt())` across all steps. Fixed d
 ::: {lang=en}
 Performance is considered from the design stage. Optimization follows three axes.
 :::
+::: {lang=ja}
 
 ### データレイアウト
 
@@ -867,6 +873,7 @@ ehd-cli (clap, tracing-subscriber)
 
 `cfd-compute` does not directly depend on `cfd-mesh`. Instead, it defines a lightweight `MeshData` struct in its own internal module (`cfd_core_mesh_data`). This prevents backend crates from needing knowledge of the full mesh implementation.
 :::
+::: {lang=ja}
 
 ### 外部依存
 

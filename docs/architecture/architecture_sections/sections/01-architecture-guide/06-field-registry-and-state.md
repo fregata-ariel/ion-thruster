@@ -46,3 +46,4 @@ let (phi, rhs) = state.fields.get_scalar_pair_mut("phi", "poisson_rhs")?;
 
 `SimState` holds `FieldRegistry` + current time (`time: f64`) + step count (`step: usize`) + timestep size (`dt: f64`). All sub-steps within a timestep sequentially mutate the same `SimState`.
 :::
+::: {lang=ja}

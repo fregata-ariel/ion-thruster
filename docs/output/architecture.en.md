@@ -147,48 +147,6 @@ pub trait ComputeBackend: Send + Sync {
 
 `MeshData` is a lightweight mesh struct defined within `cfd-compute` to avoid direct dependency on `cfd-mesh::Mesh`. Conversion is done via `Mesh::to_mesh_data()`.
 
-### カーネルはデータであり、コードではない
-
-FVM演算子（ラプラシアン、移流、Scharfetter-Gummel schemeフラックス等）は`FaceKernel`/`CellKernel`という**データ記述**を返す。実行はしない。
-
-```rust
-// cfd-fvm: カーネル「記述」を構築（計算は発生しない）
-let kernel = laplacian_kernel("phi", 1.0, "residual");
-
-// cfd-compute-cpu: カーネルを「実行」（バックエンドがops列を解釈）
-backend.execute_face_kernel(mesh, &kernel, fields)?;
-```
-
-`FaceKernel`は名前、`FaceOp`列、読み書きフィールドリストを持つ。`FaceOp`には4種の面演算がある:
-
-- `Diffusion` — 拡散フラックス: $\gamma_f \cdot A_f \cdot (\phi_N - \phi_O) / |d|$
-- `Advection` — 移流フラックス（Upwind/Central/TVD選択）
-- `ScharfetterGummel` — ドリフト拡散フラックス（Bernoulli function重み付け）
-- `Divergence` — ベクトル場の発散
-
-`CellKernel`は`CellOp`列を持ち、6種のセル演算を提供: `Axpy`, `Scale`, `Clamp`, `Multiply`, `Fill`, `Copy`。
-
-### なぜクロージャではなくデータ記述か
-
-Rustのクロージャはコンパイル時に型が確定する。JITコンパイラ(Cranelift)やGPU(WGPU)には渡せない。データ記述なら:
-
-- Craneliftで検査・コンパイルできる
-- WGPUでcompute shaderに変換できる
-- シリアライズしてキャッシュできる
-- 最適化パスを走らせられる
-
-### バックエンド階層
-
-```
-FaceKernel / CellKernel（データ記述）
-    │
-    ├── CpuBackend      → 直接Rustループ（現在）
-    ├── CraneliftBackend → JITネイティブコード（将来）
-    └── WgpuBackend      → GPU compute shader（将来）
-```
-
-`ComputeBackend` traitは`MeshHandle`と`FieldStore`を関連型として持ち、各バックエンドが独自のデータ表現を使える。
-
 The ComputeBackend abstraction layer separates "what to compute" from "how to execute." This is the framework's most distinctive design decision.
 
 ### Kernels are data, not code
@@ -266,31 +224,6 @@ pub struct Mesh {
 
 `CellType` supports 6 variants: `Triangle`, `Quad`, `Tetrahedron`, `Hexahedron`, `Wedge`, `Pyramid`. Topology construction is done by `topology::build_mesh()`, which builds the face-based structure from raw element data read from Gmsh. Shared faces between two cells are identified as internal faces by hash-matching sorted node sets; faces belonging to only one cell are boundary faces.
 
-### 面の順序規約
-
-内部面が先、境界面が後:
-
-```
-面インデックス: [0 .. n_internal) [n_internal .. n_total)
-                 ├─ 内部面 ─────┤ ├─ 境界面 ──────────┤
-                                   ├─ patch 0 ─┤ ├─ patch 1 ─┤ ...
-```
-
-この順序はOpenFOAMの規約に一致し、最もホットな内部面ループをブランチフリー・連続メモリアクセスで実行可能にする。
-
-### CSR圧縮接続
-
-セル→面、セル→ノード、面→ノードの接続情報はCSR形式（offsets配列 + indices配列）で格納する。`Vec<Vec<FaceId>>`のようなヒープ散在を避け、キャッシュ効率とSIMD対応を確保する。
-
-### 事前計算された幾何量
-
-- 面積、法線、重心（面・セル）
-- セル体積
-- 面delta（owner→neighbor重心間ベクトル）
-- 補間重み
-
-これらはメッシュ読込時に一度計算し、ソルバ実行中は再計算しない。
-
 The `Mesh` struct stores face-based FVM topology in a data-oriented layout.
 
 ### Face ordering convention
@@ -343,14 +276,6 @@ let (phi, rhs) = state.fields.get_scalar_pair_mut("phi", "poisson_rhs")?;
 
 `SimState` holds `FieldRegistry` + current time (`time: f64`) + step count (`step: usize`) + timestep size (`dt: f64`). All sub-steps within a timestep sequentially mutate the same `SimState`.
 
-### なぜ文字列キーか
-
-- 物理モジュール間がコンパイル時に互いを知らなくてよい
-- デバッグ・ログで場の名前が直接読める
-- HashMap lookupのコストはタイムステップあたり1回/フィールドであり、ホットループ内ではない
-
-`SimState`は`FieldRegistry` + 時刻 + ステップ数 + dtを保持する。タイムステップ中の全サブステップが同一の`SimState`を逐次的に変更する。
-
 `FieldRegistry` manages fields through a string-keyed HashMap. Physics modules register fields here and share them with other modules.
 
 ```rust
@@ -391,22 +316,6 @@ for step in ehd.splitting_steps() {
 ```
 
 The EHD module registers 9 fields: `phi`, `electric_field`, `ion_density`, `charge_density`, `ehd_force`, `velocity`, `pressure`, `poisson_rhs`, `ion_rhs`. It also provides `output_fields()` returning field name lists for VTU output.
-
-### 将来の複数物理モジュール連成
-
-```rust
-let ehd = EhdModule::new(ehd_config);
-let thermal = ThermalModule::new(thermal_config);
-
-ehd.register_fields(&mut state.fields, &mesh);
-thermal.register_fields(&mut state.fields, &mesh);
-
-// ステップの順序が連成の仕方を決める
-for step in ehd.splitting_steps() { splitting.add_step(step); }
-for step in thermal.splitting_steps() { splitting.add_step(step); }
-```
-
-モジュール間の通信は`FieldRegistry`のみを介する。直接参照なし。
 
 Physics modules are implemented as concrete structs following the `PhysicsModule` pattern. Rather than a monolithic trait object, each module has three responsibilities:
 
@@ -459,33 +368,6 @@ for step_num in 1..=max_steps {
 }
 ```
 
-### SplittingStep trait
-
-各サブステップは以下のtraitを実装する:
-
-```rust
-pub trait SplittingStep: Send {
-    fn name(&self) -> &str;
-    fn advance(&mut self, mesh: &Mesh, state: &mut SimState, dt: f64) -> Result<()>;
-    fn max_dt(&self, mesh: &Mesh, state: &SimState) -> f64;
-}
-```
-
-`max_dt()`は各ステップの安定性制約を報告する。楕円型（Poisson）は`f64::INFINITY`を返す。
-
-### EHDの分割順序
-
-```
-1. PoissonStep    : ρ_q → φ, E を計算（楕円型、CG求解）
-2. IonTransportStep: E, u を使って n_i を更新（SG scheme）
-3. EhdForceStep   : ρ_q × E → f_EHD を計算
-4. FluidStep      : f_EHD を体積力として u, p を更新（圧力投影）
-```
-
-### 時間刻み制御
-
-全ステップの`max_dt()`の最小値にCFL係数を乗じて全体のdtを決定する。固定dt指定も可能。
-
 operator splitting method is used to solve the coupled equation system sequentially.
 
 ### SplittingStep trait
@@ -519,24 +401,6 @@ Global dt is determined as `CFL × min(step.max_dt())` across all steps. Fixed d
 
 
 Performance is considered from the design stage. Optimization follows three axes.
-
-### データレイアウト
-
-- 全フィールドは`Vec<f64>` / `Vec<[f64; 3]>`の連続配列
-- メッシュ接続はCSR圧縮（`Vec<u32>` offsets + `Vec<Id>` indices）
-- `HashMap`はホットループ外（場の取得は1回/タイムステップ/フィールド）
-
-### アロケーション回避
-
-- `LinearSystem`のスパーシティパターンは1回構築、値のみ毎ステップ上書き
-- CGソルバのスクラッチバッファは`SplittingStep`構造体に事前確保
-- 面フラックスの一時バッファも再利用
-
-### 並列化への備え
-
-- 面ループ・セルループはrayon並列化対応構造
-- `[f64; 3]`ベクトルはauto-vectorization対応
-- `SplittingStep: Send`でスレッド安全性を保証
 
 ### Data layout
 
@@ -576,17 +440,6 @@ ehd-cli (clap, tracing-subscriber)
 ```
 
 `cfd-compute` does not directly depend on `cfd-mesh`. Instead, it defines a lightweight `MeshData` struct in its own internal module (`cfd_core_mesh_data`). This prevents backend crates from needing knowledge of the full mesh implementation.
-
-### 外部依存
-
-| 用途 | crate | 選定理由 |
-|---|---|---|
-| 疎行列 | `sprs` | 成熟、pure Rust、CSR/COO対応 |
-| Gmsh読込 | 自前パーサ | MSH 2.2 ASCII、依存最小化 |
-| VTU出力 | `vtkio` | XML VTU非構造格子対応 |
-| 設定 | `toml` + `serde` | Rust標準的手法 |
-| CLI | `clap` | derive macro対応 |
-| ログ | `tracing` | 構造化ログ、スパン計測 |
 
 Inter-crate dependencies are strictly unidirectional. No circular dependencies exist.
 
