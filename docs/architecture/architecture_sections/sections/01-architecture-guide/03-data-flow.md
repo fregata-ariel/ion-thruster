@@ -2,7 +2,7 @@
 ::: {lang=ja}
 シミュレーション全体のデータフローは以下の通り:
 
-```
+```text
 Gmsh (.geo/.msh)
   → cfd-mesh: Mesh構造体（面ベースFVMトポロジ）
     → cfd-fields: FieldRegistry（場の登録・共有）
@@ -50,7 +50,7 @@ driver.run(&mesh, &mut state, &mut writer)?;
 ::: {lang=en}
 The overall simulation data flow:
 
-```
+```text
 Gmsh (.geo/.msh)
   → cfd-mesh: Mesh struct (face-based FVM topology)
     → cfd-fields: FieldRegistry (field registration & sharing)

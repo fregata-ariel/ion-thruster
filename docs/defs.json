@@ -46,6 +46,10 @@
       "id": "electric_potential",
       "kind": "term",
       "names": { "ja": "電位", "en": "electric potential" },
+      "description": {
+        "ja": "ある点における単位電荷あたりの電気的位置エネルギー",
+        "en": "Electric potential energy per unit charge at a given point"
+      },
       "symbol": "\\phi"
     },
     {
@@ -62,18 +66,30 @@
       "id": "ion_density",
       "kind": "term",
       "names": { "ja": "イオン密度", "en": "ion density" },
+      "description": {
+        "ja": "単位体積あたりのイオン数",
+        "en": "Number of ions per unit volume"
+      },
       "symbol": "n_i"
     },
     {
       "id": "charge_density",
       "kind": "term",
       "names": { "ja": "空間電荷密度", "en": "space charge density" },
+      "description": {
+        "ja": "単位体積あたりの正味電荷量",
+        "en": "Net electric charge per unit volume"
+      },
       "symbol": "\\rho_q"
     },
     {
       "id": "ion_mobility",
       "kind": "term",
       "names": { "ja": "イオン移動度", "en": "ion mobility" },
+      "description": {
+        "ja": "単位電場あたりのイオンドリフト速度",
+        "en": "Ion drift velocity per unit electric field"
+      },
       "symbol": "\\mu_i",
       "value": "2.0e-4",
       "unit": "m²/(V·s)"
@@ -82,6 +98,10 @@
       "id": "ion_diffusion",
       "kind": "term",
       "names": { "ja": "イオン拡散係数", "en": "ion diffusion coefficient" },
+      "description": {
+        "ja": "イオンの拡散速度を特徴づける輸送係数",
+        "en": "Transport coefficient characterizing the rate of ion diffusion"
+      },
       "symbol": "D_i",
       "value": "5.0e-6",
       "unit": "m²/s"
@@ -90,6 +110,10 @@
       "id": "permittivity",
       "kind": "term",
       "names": { "ja": "真空の誘電率", "en": "permittivity of free space" },
+      "description": {
+        "ja": "真空中における電場と電束密度の比例定数",
+        "en": "Proportionality constant between electric field and electric displacement in vacuum"
+      },
       "symbol": "\\varepsilon_0",
       "value": "8.8541878128e-12",
       "unit": "F/m"
@@ -98,6 +122,10 @@
       "id": "elementary_charge",
       "kind": "term",
       "names": { "ja": "電気素量", "en": "elementary charge" },
+      "description": {
+        "ja": "陽子1個が持つ電荷の絶対値",
+        "en": "Absolute value of the electric charge carried by a single proton"
+      },
       "symbol": "e",
       "value": "1.602176634e-19",
       "unit": "C"
@@ -106,6 +134,10 @@
       "id": "gas_density",
       "kind": "term",
       "names": { "ja": "気体密度", "en": "gas density" },
+      "description": {
+        "ja": "周囲気体の質量密度（標準大気条件）",
+        "en": "Mass density of the surrounding gas at standard atmospheric conditions"
+      },
       "symbol": "\\rho_g",
       "value": "1.225",
       "unit": "kg/m³"
@@ -114,6 +146,10 @@
       "id": "gas_viscosity",
       "kind": "term",
       "names": { "ja": "気体動粘度", "en": "gas dynamic viscosity" },
+      "description": {
+        "ja": "気体のせん断応力と速度勾配の比例定数",
+        "en": "Proportionality constant between shear stress and velocity gradient in the gas"
+      },
       "symbol": "\\mu_g",
       "value": "1.81e-5",
       "unit": "Pa·s"

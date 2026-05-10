@@ -1,5 +1,5 @@
 
-```
+```text
 output/
 ├── output.pvd           # PVD collection (time series index)
 ├── frame_000000.vtu     # initial state

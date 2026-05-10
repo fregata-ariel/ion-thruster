@@ -2,7 +2,7 @@
 ::: {lang=ja}
 連成方程式系は[]{.term id=operator_splitting}で解く。各タイムステップで以下の4つのサブステップを逐次実行する:
 
-```
+```text
 1. PoissonStep    : ρ_q → φ, E を計算（楕円型、CG求解）
 2. IonTransportStep: E, u を使って n_i を更新（SGスキーム、陽的時間積分）
 3. EhdForceStep   : ρ_q × E → f_EHD を計算（代数的、dtに依存しない）
@@ -28,7 +28,7 @@ $$
 ::: {lang=en}
 The coupled equation system is solved using []{.term id=operator_splitting}. Four sub-steps are executed sequentially each timestep:
 
-```
+```text
 1. PoissonStep     : ρ_q → φ, E (elliptic, CG solve)
 2. IonTransportStep: update n_i using E, u (SG scheme, explicit time integration)
 3. EhdForceStep    : ρ_q × E → f_EHD (algebraic, dt-independent)

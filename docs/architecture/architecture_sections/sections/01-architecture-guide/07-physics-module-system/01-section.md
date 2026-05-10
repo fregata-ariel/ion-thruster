@@ -15,18 +15,3 @@ for step in thermal.splitting_steps() { splitting.add_step(step); }
 :::
 
 ::: {lang=en}
-Physics modules are implemented as concrete structs following the `PhysicsModule` pattern. Rather than a monolithic trait object, each module has three responsibilities:
-
-1. **Field registration**: `register_fields()` — add required fields to the Registry
-2. **Initialization**: `initialize()` — set initial conditions
-3. **Step provision**: `splitting_steps()` — return a list of sub-steps for OperatorSplitting
-
-```rust
-let ehd = EhdModule::new(config);
-ehd.register_fields(&mut state.fields, &mesh);
-ehd.initialize(&mut state, &mesh);
-
-for step in ehd.splitting_steps() {
-    splitting.add_step(step);
-}
-```

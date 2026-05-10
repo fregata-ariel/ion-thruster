@@ -1,11 +1,11 @@
 # User Guide
 
 ::: {lang=ja}
-ion-craft CFDフレームワークのユーザーガイド。インストールからメッシュ生成、設定、シミュレーション実行、可視化までの手順を説明する。
+ion-craft CFDフレームワークのユーザーガイド。[]{.term id=fvm}に基づく[]{.term id=ionic_wind}シミュレーションについて、インストールからメッシュ生成、設定、実行、可視化までの手順を説明する。
 :::
 
 ::: {lang=en}
-User guide for the ion-craft CFD framework. Covers installation, mesh generation, configuration, simulation execution, and visualization.
+User guide for the ion-craft CFD framework. Covers []{.term id=fvm}-based []{.term id=ionic_wind} simulation — from installation to mesh generation, configuration, execution, and visualization.
 :::
 
 ## Prerequisites
@@ -88,7 +88,7 @@ Gmshの`.geo`ファイルでジオメトリを定義し、`.msh`ファイル（M
 
 物理グループの定義が重要。TOML設定の`[boundary.*]`セクション名と一致させる:
 
-```
+```text
 Physical Curve("collector") = {1};
 Physical Curve("emitter") = {5, 6, 7, 8};
 Physical Curve("farfield") = {2, 3, 4};
@@ -117,7 +117,7 @@ Define geometry in Gmsh `.geo` files and generate `.msh` files (MSH 2.2 ASCII).
 
 Physical group definitions are critical — they must match the `[boundary.*]` section names in the TOML config:
 
-```
+```text
 Physical Curve("collector") = {1};
 Physical Curve("emitter") = {5, 6, 7, 8};
 Physical Curve("farfield") = {2, 3, 4};
@@ -189,9 +189,11 @@ advection = "upwind"
 pressure_solver = "cg"
 dt = 1.0e-6        # 時間刻み (s)
 steps = 100         # 最大ステップ数
-cfl = 0.5           # CFL係数（適応dt時）
-max_time = 1.0e-4   # 最大シミュレーション時間 (s)
+cfl = 0.5           # CFL係数（省略可、適応dt時に使用）
+max_time = 1.0e-4   # 最大シミュレーション時間（省略可、省略時は無制限）
 ```
+
+`pressure_solver = "cg"` は[]{.term id=cg_solver}を使用。時間積分は[]{.term id=operator_splitting}で連成方程式系を逐次的に解く。
 
 ### [output] セクション
 
@@ -260,9 +262,11 @@ advection = "upwind"
 pressure_solver = "cg"
 dt = 1.0e-6        # timestep (s)
 steps = 100         # maximum steps
-cfl = 0.5           # CFL coefficient (for adaptive dt)
-max_time = 1.0e-4   # maximum simulation time (s)
+cfl = 0.5           # CFL coefficient (optional, used for adaptive dt)
+max_time = 1.0e-4   # maximum simulation time (optional, unlimited if omitted)
 ```
+
+`pressure_solver = "cg"` uses the []{.term id=cg_solver}. Time integration uses []{.term id=operator_splitting} to solve the coupled equation system sequentially.
 
 ### [output] section
 
@@ -293,7 +297,7 @@ cargo run --release --bin ehd-sim -- --config examples/wire_plate_2d/simulation.
 
 ### CLIオプション
 
-```
+```text
 ehd-sim [OPTIONS]
 
 Options:
@@ -328,7 +332,7 @@ cargo run --release --bin ehd-sim -- --config examples/wire_plate_2d/simulation.
 
 ### CLI options
 
-```
+```text
 ehd-sim [OPTIONS]
 
 Options:
@@ -362,7 +366,7 @@ RUST_LOG=info  cargo run --release --bin ehd-sim -- -c simulation.toml
 
 ### 出力ファイル構造
 
-```
+```text
 output/
 ├── output.pvd           # PVDコレクション（時系列インデックス）
 ├── frame_000000.vtu     # 初期状態
@@ -386,7 +390,7 @@ Simulation results are output in VTU format to the `output/` directory.
 
 ### Output file structure
 
-```
+```text
 output/
 ├── output.pvd           # PVD collection (time series index)
 ├── frame_000000.vtu     # initial state
@@ -401,7 +405,7 @@ The PVD file is XML recording each frame's timestamp and filename. ParaView auto
 ## Adding a Physics Module
 
 ::: {lang=ja}
-新しい物理モジュールを追加する手順:
+新しい物理モジュールを追加する手順。[]{.term id=operator_splitting}フレームワークにステップとして組み込む:
 
 ### 1. crateの作成
 
@@ -465,7 +469,7 @@ for step in thermal.splitting_steps() {
 :::
 
 ::: {lang=en}
-Steps to add a new physics module:
+Steps to add a new physics module. Each module is integrated as steps in the []{.term id=operator_splitting} framework:
 
 ### 1. Create the crate
 

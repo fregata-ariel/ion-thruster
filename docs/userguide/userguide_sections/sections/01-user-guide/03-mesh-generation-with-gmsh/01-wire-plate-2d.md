@@ -8,7 +8,7 @@
 
 物理グループの定義が重要。TOML設定の`[boundary.*]`セクション名と一致させる:
 
-```
+```text
 Physical Curve("collector") = {1};
 Physical Curve("emitter") = {5, 6, 7, 8};
 Physical Curve("farfield") = {2, 3, 4};

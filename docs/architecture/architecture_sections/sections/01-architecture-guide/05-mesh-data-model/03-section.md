@@ -8,4 +8,3 @@
 :::
 
 ::: {lang=en}
-The `Mesh` struct stores face-based FVM topology in a data-oriented layout.

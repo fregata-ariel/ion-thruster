@@ -1,5 +1,5 @@
 
-```
+```text
 ehd-sim [OPTIONS]
 
 Options:

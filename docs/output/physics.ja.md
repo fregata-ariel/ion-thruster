@@ -216,7 +216,7 @@ velocity = { type = "no_slip" }
 
 連成方程式系はオペレータ分割法で解く。各タイムステップで以下の4つのサブステップを逐次実行する:
 
-```
+```text
 1. PoissonStep    : ρ_q → φ, E を計算（楕円型、CG求解）
 2. IonTransportStep: E, u を使って n_i を更新（SGスキーム、陽的時間積分）
 3. EhdForceStep   : ρ_q × E → f_EHD を計算（代数的、dtに依存しない）

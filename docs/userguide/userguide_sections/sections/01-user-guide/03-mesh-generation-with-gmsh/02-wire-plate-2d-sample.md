@@ -8,7 +8,7 @@
 
 Physical group definitions are critical — they must match the `[boundary.*]` section names in the TOML config:
 
-```
+```text
 Physical Curve("collector") = {1};
 Physical Curve("emitter") = {5, 6, 7, 8};
 Physical Curve("farfield") = {2, 3, 4};

@@ -217,7 +217,7 @@ The `Absorbing` boundary condition represents the physics of ions reaching the e
 
 The coupled equation system is solved using operator splitting method. Four sub-steps are executed sequentially each timestep:
 
-```
+```text
 1. PoissonStep     : ρ_q → φ, E (elliptic, CG solve)
 2. IonTransportStep: update n_i using E, u (SG scheme, explicit time integration)
 3. EhdForceStep    : ρ_q × E → f_EHD (algebraic, dt-independent)

@@ -13,5 +13,10 @@ pub trait ComputeBackend: Send + Sync {
     fn norm2(&self, x: &[f64]) -> f64;
 }
 pub trait MeshHandle: Send + Sync {}
-pub trait FieldStore: Send + Sync { ... }
+pub trait FieldStore: Send + Sync {
+    fn scalar_data(&self, name: &str) -> Result<&[f64], CfdError>;
+    fn scalar_data_mut(&mut self, name: &str) -> Result<&mut [f64], CfdError>;
+    fn vector_data(&self, name: &str) -> Result<&[[f64; 3]], CfdError>;
+    fn vector_data_mut(&mut self, name: &str) -> Result<&mut [[f64; 3]], CfdError>;
+}
 ```

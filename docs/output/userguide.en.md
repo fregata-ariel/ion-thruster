@@ -1,7 +1,7 @@
 # User Guide
 
 
-User guide for the ion-craft CFD framework. Covers installation, mesh generation, configuration, simulation execution, and visualization.
+User guide for the ion-craft CFD framework. Covers Finite Volume Method-based ionic wind simulation — from installation to mesh generation, configuration, execution, and visualization.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ Define geometry in Gmsh `.geo` files and generate `.msh` files (MSH 2.2 ASCII).
 
 Physical group definitions are critical — they must match the `[boundary.*]` section names in the TOML config:
 
-```
+```text
 Physical Curve("collector") = {1};
 Physical Curve("emitter") = {5, 6, 7, 8};
 Physical Curve("farfield") = {2, 3, 4};
@@ -122,9 +122,11 @@ advection = "upwind"
 pressure_solver = "cg"
 dt = 1.0e-6        # timestep (s)
 steps = 100         # maximum steps
-cfl = 0.5           # CFL coefficient (for adaptive dt)
-max_time = 1.0e-4   # maximum simulation time (s)
+cfl = 0.5           # CFL coefficient (optional, used for adaptive dt)
+max_time = 1.0e-4   # maximum simulation time (optional, unlimited if omitted)
 ```
+
+`pressure_solver = "cg"` uses the Conjugate Gradient method. Time integration uses operator splitting method to solve the coupled equation system sequentially.
 
 ### [output] section
 
@@ -154,7 +156,7 @@ cargo run --release --bin ehd-sim -- --config examples/wire_plate_2d/simulation.
 
 ### CLI options
 
-```
+```text
 ehd-sim [OPTIONS]
 
 Options:
@@ -187,7 +189,7 @@ Simulation results are output in VTU format to the `output/` directory.
 
 ### Output file structure
 
-```
+```text
 output/
 ├── output.pvd           # PVD collection (time series index)
 ├── frame_000000.vtu     # initial state
@@ -201,7 +203,7 @@ The PVD file is XML recording each frame's timestamp and filename. ParaView auto
 ## Adding a Physics Module
 
 
-Steps to add a new physics module:
+Steps to add a new physics module. Each module is integrated as steps in the operator splitting method framework:
 
 ### 1. Create the crate
 

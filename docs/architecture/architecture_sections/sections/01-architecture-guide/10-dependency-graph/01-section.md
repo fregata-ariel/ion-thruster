@@ -10,18 +10,22 @@
 :::
 
 ::: {lang=en}
-Inter-crate dependencies are strictly unidirectional. No circular dependencies exist.
+Inter-crate dependencies are strictly unidirectional. No circular dependencies exist. The dependency graph forms a DAG (directed acyclic graph).
 
+```text
+crate                 depends on
+─────────────────────────────────────────────────────
+cfd-core              (none — thiserror only)
+cfd-compute           cfd-core
+cfd-fields            cfd-core
+cfd-linalg            cfd-core (+sprs)
+cfd-mesh              cfd-core, cfd-compute
+cfd-fvm               cfd-core, cfd-compute
+cfd-compute-cpu       cfd-core, cfd-compute, cfd-fields
+cfd-time              cfd-core, cfd-mesh, cfd-fields
+cfd-io                cfd-core, cfd-mesh, cfd-fields, cfd-time (+vtkio, toml, serde)
+ehd-physics           cfd-core, cfd-mesh, cfd-fields, cfd-linalg, cfd-compute, cfd-fvm, cfd-time
+ehd-cli               all crates (+clap, tracing-subscriber, anyhow)
 ```
-cfd-core (leaf)
-  ↑
-cfd-mesh ← cfd-fields ← cfd-linalg
-  ↑                        ↑
-cfd-compute ← cfd-compute-cpu
-  ↑
-cfd-fvm ← cfd-time ← cfd-io
-  ↑
-ehd-physics
-  ↑
-ehd-cli
-```
+
+`cfd-compute` does not directly depend on `cfd-mesh`. Instead, it defines a lightweight `MeshData` struct in its own internal module (`cfd_core_mesh_data`). This prevents backend crates from needing knowledge of the full mesh implementation.

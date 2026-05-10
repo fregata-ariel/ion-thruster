@@ -78,7 +78,7 @@ External dependencies are centrally managed via `[workspace.dependencies]`:
 
 The overall simulation data flow:
 
-```
+```text
 Gmsh (.geo/.msh)
   → cfd-mesh: Mesh struct (face-based FVM topology)
     → cfd-fields: FieldRegistry (field registration & sharing)
@@ -147,7 +147,6 @@ pub trait ComputeBackend: Send + Sync {
 
 `MeshData` is a lightweight mesh struct defined within `cfd-compute` to avoid direct dependency on `cfd-mesh::Mesh`. Conversion is done via `Mesh::to_mesh_data()`.
 
-The ComputeBackend abstraction layer separates "what to compute" from "how to execute." This is the framework's most distinctive design decision.
 
 ### Kernels are data, not code
 
@@ -181,7 +180,7 @@ Rust closures have types fixed at compile time. They cannot be passed to JIT com
 
 ### Backend hierarchy
 
-```
+```text
 FaceKernel / CellKernel (data descriptions)
     │
     ├── CpuBackend        → direct Rust loops (current)
@@ -189,7 +188,6 @@ FaceKernel / CellKernel (data descriptions)
     └── WgpuBackend        → GPU compute shaders (future)
 ```
 
-The `ComputeBackend` trait uses associated types for `MeshHandle` and `FieldStore`, allowing each backend to use its own data representation.
 
 ## Mesh Data Model
 
@@ -224,13 +222,12 @@ pub struct Mesh {
 
 `CellType` supports 6 variants: `Triangle`, `Quad`, `Tetrahedron`, `Hexahedron`, `Wedge`, `Pyramid`. Topology construction is done by `topology::build_mesh()`, which builds the face-based structure from raw element data read from Gmsh. Shared faces between two cells are identified as internal faces by hash-matching sorted node sets; faces belonging to only one cell are boundary faces.
 
-The `Mesh` struct stores face-based FVM topology in a data-oriented layout.
 
 ### Face ordering convention
 
 Internal faces first, boundary faces after:
 
-```
+```text
 Face indices: [0 .. n_internal) [n_internal .. n_total)
                ├─ internal ─────┤ ├─ boundary ──────────┤
                                    ├─ patch 0 ─┤ ├─ patch 1 ─┤ ...
@@ -276,25 +273,12 @@ let (phi, rhs) = state.fields.get_scalar_pair_mut("phi", "poisson_rhs")?;
 
 `SimState` holds `FieldRegistry` + current time (`time: f64`) + step count (`step: usize`) + timestep size (`dt: f64`). All sub-steps within a timestep sequentially mutate the same `SimState`.
 
-`FieldRegistry` manages fields through a string-keyed HashMap. Physics modules register fields here and share them with other modules.
-
-```rust
-// Register fields (inside EHD module)
-registry.register_scalar("phi", n_cells, FieldLocation::Cell);
-registry.register_vector("velocity", n_cells, FieldLocation::Cell);
-
-// Access fields (inside SplittingStep)
-let phi = state.fields.get_scalar("phi")?;
-let vel = state.fields.get_vector_mut("velocity")?;
-```
 
 ### Why string keys
 
 - Physics modules don't need compile-time knowledge of each other
 - Field names are directly readable in debug output and logs
 - HashMap lookup cost is once per field per timestep — not in hot loops
-
-`SimState` holds `FieldRegistry` + current time + step count + dt. All sub-steps within a timestep sequentially mutate the same `SimState`.
 
 ## Physics Module System
 
@@ -315,23 +299,8 @@ for step in ehd.splitting_steps() {
 }
 ```
 
-The EHD module registers 9 fields: `phi`, `electric_field`, `ion_density`, `charge_density`, `ehd_force`, `velocity`, `pressure`, `poisson_rhs`, `ion_rhs`. It also provides `output_fields()` returning field name lists for VTU output.
+Each module also provides `output_fields()` returning field name lists for VTU output.
 
-Physics modules are implemented as concrete structs following the `PhysicsModule` pattern. Rather than a monolithic trait object, each module has three responsibilities:
-
-1. **Field registration**: `register_fields()` — add required fields to the Registry
-2. **Initialization**: `initialize()` — set initial conditions
-3. **Step provision**: `splitting_steps()` — return a list of sub-steps for OperatorSplitting
-
-```rust
-let ehd = EhdModule::new(config);
-ehd.register_fields(&mut state.fields, &mesh);
-ehd.initialize(&mut state, &mesh);
-
-for step in ehd.splitting_steps() {
-    splitting.add_step(step);
-}
-```
 
 ### Future multi-physics coupling
 
@@ -386,7 +355,7 @@ pub trait SplittingStep: Send {
 
 ### EHD splitting order
 
-```
+```text
 1. PoissonStep     : ρ_q → φ, E (elliptic, CG solve)
 2. IonTransportStep: update n_i using E, u (SG scheme)
 3. EhdForceStep    : ρ_q × E → f_EHD
@@ -423,39 +392,25 @@ Performance is considered from the design stage. Optimization follows three axes
 ## Dependency Graph
 
 
-Inter-crate dependencies are strictly unidirectional. No circular dependencies exist.
+Inter-crate dependencies are strictly unidirectional. No circular dependencies exist. The dependency graph forms a DAG (directed acyclic graph).
 
-```
-cfd-core (leaf: thiserror only)
-  ↑
-cfd-mesh ← cfd-fields ← cfd-linalg (sprs)
-  ↑                        ↑
-cfd-compute ← cfd-compute-cpu
-  ↑
-cfd-fvm ← cfd-time ← cfd-io (vtkio, toml, serde)
-  ↑
-ehd-physics
-  ↑
-ehd-cli (clap, tracing-subscriber)
+```text
+crate                 depends on
+─────────────────────────────────────────────────────
+cfd-core              (none — thiserror only)
+cfd-compute           cfd-core
+cfd-fields            cfd-core
+cfd-linalg            cfd-core (+sprs)
+cfd-mesh              cfd-core, cfd-compute
+cfd-fvm               cfd-core, cfd-compute
+cfd-compute-cpu       cfd-core, cfd-compute, cfd-fields
+cfd-time              cfd-core, cfd-mesh, cfd-fields
+cfd-io                cfd-core, cfd-mesh, cfd-fields, cfd-time (+vtkio, toml, serde)
+ehd-physics           cfd-core, cfd-mesh, cfd-fields, cfd-linalg, cfd-compute, cfd-fvm, cfd-time
+ehd-cli               all crates (+clap, tracing-subscriber, anyhow)
 ```
 
 `cfd-compute` does not directly depend on `cfd-mesh`. Instead, it defines a lightweight `MeshData` struct in its own internal module (`cfd_core_mesh_data`). This prevents backend crates from needing knowledge of the full mesh implementation.
-
-Inter-crate dependencies are strictly unidirectional. No circular dependencies exist.
-
-```
-cfd-core (leaf)
-  ↑
-cfd-mesh ← cfd-fields ← cfd-linalg
-  ↑                        ↑
-cfd-compute ← cfd-compute-cpu
-  ↑
-cfd-fvm ← cfd-time ← cfd-io
-  ↑
-ehd-physics
-  ↑
-ehd-cli
-```
 
 ### External dependencies
 

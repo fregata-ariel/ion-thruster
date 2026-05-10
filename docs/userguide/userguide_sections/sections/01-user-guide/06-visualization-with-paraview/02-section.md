@@ -1,5 +1,5 @@
 
-```
+```text
 output/
 ├── output.pvd           # PVDコレクション（時系列インデックス）
 ├── frame_000000.vtu     # 初期状態

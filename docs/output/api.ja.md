@@ -44,7 +44,7 @@ pub struct NodeId(pub u32);  // ノードインデックス
 ```rust
 pub enum BoundaryCondition {
     Dirichlet(f64),  Neumann(f64),  ZeroGradient,  NoSlip,
-    Outflow,  Absorbing,  FixedFlux(f64),  Custom(String),
+    Outflow,  Absorbing,  FixedFlux(f64),  Custom { kind: String, params: Vec<f64> },
 }
 ```
 
@@ -238,7 +238,12 @@ pub trait ComputeBackend: Send + Sync {
     fn norm2(&self, x: &[f64]) -> f64;
 }
 pub trait MeshHandle: Send + Sync {}
-pub trait FieldStore: Send + Sync { ... }
+pub trait FieldStore: Send + Sync {
+    fn scalar_data(&self, name: &str) -> Result<&[f64], CfdError>;
+    fn scalar_data_mut(&mut self, name: &str) -> Result<&mut [f64], CfdError>;
+    fn vector_data(&self, name: &str) -> Result<&[[f64; 3]], CfdError>;
+    fn vector_data_mut(&mut self, name: &str) -> Result<&mut [[f64; 3]], CfdError>;
+}
 ```
 
 ### Kernel IR Types
@@ -246,11 +251,11 @@ pub trait FieldStore: Send + Sync { ... }
 ```rust
 // 面演算
 pub enum FaceOp { Diffusion{..}, Advection{..}, ScharfetterGummel{..}, Divergence{..} }
-pub struct FaceKernel { pub name: String, pub ops: Vec<FaceOp>, pub reads/writes: Vec<FieldRef> }
+pub struct FaceKernel { pub name: String, pub ops: Vec<FaceOp>, pub reads: Vec<FieldRef>, pub writes: Vec<FieldRef> }
 
 // セル演算
 pub enum CellOp { Axpy{..}, Scale{..}, Clamp{..}, Multiply{..}, Fill{..}, Copy{..} }
-pub struct CellKernel { pub name: String, pub ops: Vec<CellOp>, pub reads/writes: Vec<FieldRef> }
+pub struct CellKernel { pub name: String, pub ops: Vec<CellOp>, pub reads: Vec<FieldRef>, pub writes: Vec<FieldRef> }
 
 // パラメータ参照
 pub struct FieldRef(pub String);
